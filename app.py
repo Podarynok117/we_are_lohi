@@ -10,4 +10,5 @@ def index():
         messages.append(message)
         print(message)
     return render_template("index.html", mg=messages)
+#fdfdfdfdfdfdfdfdfdfdfdfdfdfdfd
 socketio.run(app, debug=True)
