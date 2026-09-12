@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     <ul>
@@ -12,10 +13,12 @@
     {%endfor%}
     </ul>
     
-    <form method="post">
-        <input type="text" name="eman">
-        <button>Бувай, смс-очка моя!</button>
-    </form>
-
+    
+    <input id="message" type="text" name="eman">
+    <button id="send">Бувай, смс-очка моя!</button>
+    
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
+
 </html>
