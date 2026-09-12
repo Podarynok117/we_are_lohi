@@ -12,11 +12,13 @@
         <li>{{m}}</li>
     {%endfor%}
     </ul>
-    
+    <div id="messages">
+
+    </div>
     
     <input id="message" type="text" name="eman">
     <button id="send">Бувай, смс-очка моя!</button>
-    
+
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
