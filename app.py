@@ -17,5 +17,5 @@ def index():
 @socketio.on("message")
 def handle_message(message):
     print("Нам повідомили отаке:",message )
-    emit("message", message)
-socketio.run(app, debug=True)
+    emit("message", message, broadcast=True)
+socketio.run(app, debug=True, host="0.0.0.0")

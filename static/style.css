@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(130, 202, 250);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:chocolate
+}
+#messages {
+    height:400px;
+    border:1px solid #4a1d01
+}

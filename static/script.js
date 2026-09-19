@@ -14,3 +14,12 @@ button.onclick = function() {
     messages.appendChild(p);
     input.value = "";
 }
+input.onkeydown = function(){
+    if (event.key=="Enter") {
+        socket.emit("message", input.value);
+        let p=document.createElement("p");
+        p.textContent=input.value; 
+        messages.appendChild(p);
+        input.value = "";
+    }
+}
