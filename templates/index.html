@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
+    <title>Chatik</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
 </head>
 <body>
     <ul>
-    {% for m in mg %}
+    {% for m in mg%}
         <li>{{m}}</li>
-    {% endfor %}
+    {%endfor%}
     </ul>
-<div id="messages"></div>
+    <div class="chat">
+        <h1>ЧАТ</h1>
 
-<input id="message" type="text">
-<button id="send">Надіслати</button>
+    <div id="messages">
+    </div>
+    
+    <input id="message" type="text" name="eman">
+    <button id="send">Бувай, смс-очка моя!</button>
+    </div>
 
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
 
 </html>

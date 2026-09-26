@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(28, 49, 109);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:rgb(255, 219, 100)
+}
+
+
+.chat {
+    /*width: 600px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#messages {
+    height:400px;
+    width: 800px;
+    border:1px solid #ff731c;
+    display:block;
+}
