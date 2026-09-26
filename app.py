@@ -1,5 +1,22 @@
 from flask import *
-from flask_socketio import * 
+from flask_socketio import *
+import sqlite3
+
+con=sqlite3.connect("chat.db")
+cursor=con.cursor()
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+username TEXT,
+hesh_password TEXT
+)
+""")
+cursor.close()
+con.commit()
+con.close()
+
+
+
 app = Flask(__name__)
 socketio=SocketIO(app)
 messages=[]
@@ -14,6 +31,20 @@ def index():
 @app.route("/")
 def index():
     return render_template("index.html")
+@app.route("/registration", methods=["POST", "GET"])
+def registration():
+    if request.method=='POST':
+        username=request.form["username"]
+        password=request.form["password"]
+        con=sqlite3.connect("chat.db")
+        cursor=con.cursor()
+        cursor.execute("INSERT INTO users (username, hesh_password) VALUES (?,?)", (username, password))
+        cursor.close()
+        con.commit()
+        con.close()
+        return "І нашо ти це зробили?"
+    return render_template("registration.html")
+
 @socketio.on("message")
 def handle_message(message):
     print("Нам повідомили отаке:",message )

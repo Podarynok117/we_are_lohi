@@ -9,7 +9,7 @@ function showMwssage(message) {
     messages.appendChild(p);
     
 }
-socket.emit("message", "прювет");
+//socket.emit("message", "прювет");
 socket.on("message", showMwssage);
 button.onclick = function() {
     socket.emit("message", input.value);
