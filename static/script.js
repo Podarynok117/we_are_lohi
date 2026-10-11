@@ -6,7 +6,7 @@ let messages = document.getElementById("messages");
 function showMwssage(message) {
     console.log(message);
     let p=document.createElement("p");
-    p.textContent=message; 
+    p.textContent=message.username+": "+message.text; 
     messages.appendChild(p);
     
 }

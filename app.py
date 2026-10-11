@@ -21,6 +21,7 @@ app = Flask(__name__)
 app.secret_key="54321"
 socketio=SocketIO(app)
 messages=[]
+connected_users={}
 """@app.route("/", methods=["GET","POST"])
 def index():
     if request.method=="POST":
@@ -34,7 +35,7 @@ def index():
 def index():
     username=session.get("username")
     if not username:
-        return render_template("autorisation.html")
+        return redirect("/autorisation")
     return render_template("index.html", username=username)
 
 
@@ -46,8 +47,8 @@ def registration():
         con=sqlite3.connect("chat.db")
         cursor=con.cursor()
         cursor.execute("INSERT INTO users (username, hesh_password) VALUES (?,?)", (username, password))
-        cursor.close()
         con.commit()
+        cursor.close()
         con.close()
         return redirect("/autorisation")
     return render_template("registration.html")
@@ -61,8 +62,8 @@ def autorisation():
         cursor=con.cursor()
         cursor.execute("SELECT * FROM users WHERE username=? AND hesh_password=?", (username, password))
         user=cursor.fetchall()
-        cursor.close()
         con.commit()
+        cursor.close()
         con.close()
         if user:
             session["username"]=user[0][1]
@@ -73,6 +74,18 @@ def autorisation():
 def handle_message(message):
     print("Нам повідомили отаке:",message["username"],message["text"] )
     socketio.emit("message", message)
+
+@socketio.on("connect")
+def handle_connect():
+    username=session.get(session)
+    if username:
+        connected_users[request.sid]=username
+
+@socketio.on("connect")
+def handle_disconnect():
+    if request.sid in connected_users:
+        del connected_users[request.sid]
+
 socketio.run(app, debug=True, host="0.0.0.0", port=5000)
 
 
