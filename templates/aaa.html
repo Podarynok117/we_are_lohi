@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS</title>
+</head>
+<body>
+    <h1>Пошук. Введи щось дуже цікаве</h1>
+    <form action="" >
+        <input name="message" type="text" placeholder="введи якусь фігню">
+        <button onclick="alert('Ти вибухнеш за три секунди. поки ти це читав, пройщло дві. бувай')">пошук</button>
+        <h2>РЕЗУЛЬТАТ ТВОЇХ ДІЙ:</h2>
+        <div id="result"></div>
+    </form>
+
+    
+    
+    <script>
+        let params = new URLSearchParams(location.search);
+        let message= params.get("message");
+        if (message) {
+            document.getElementById("result").innerHTML="<p>зазапітон </p>"+message+"<p>нічого не дав. Він тупенький)</p>"+ '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT04UyeiJRSywapF5aegkQD-sXdPNbwZo4-FhuauGW3yDCV-WtS7UnB4NxK&s=10" alt="зазапітон в усій своїй красі">';
+        }
+    </script>
+</body>
+</html>

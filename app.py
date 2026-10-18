@@ -31,6 +31,11 @@ def index():
     return render_template("index.html", mg=messages)"""
 #fdfdfdfdfdfdfdfdfdfdfdfdfdfdfd
 
+@app.route("/aaa")
+def aaa():
+    return render_template("aaa.html")
+
+
 @app.route("/")
 def index():
     username=session.get("username")
@@ -87,7 +92,4 @@ def handle_disconnect():
         del connected_users[request.sid]
 
 socketio.run(app, debug=True, host="0.0.0.0", port=5000)
-
-
-
 
